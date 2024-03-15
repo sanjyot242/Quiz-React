@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import QUESTIONS from '../questions';
+import QuizTimer from './QuizTimer';
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -30,6 +31,12 @@ export default function Quiz() {
   return (
     <div id='quiz'>
       <div id='question'>
+        <QuizTimer
+          timeout={10000}
+          onTimeout={() => {
+            handleAnsSelect(null);
+          }}
+        />
         <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
         <ul id='answers'>
           {shuffledOptions.map((answer) => (
@@ -42,3 +49,5 @@ export default function Quiz() {
     </div>
   );
 }
+
+//add key for quiztimer to remout
